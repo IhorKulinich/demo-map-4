@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <title>try to use mapbox in leaflet</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <!--
+    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+    -->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .blured {
+            background: rgba(255,255,255,0.4);
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.4);
+            position: absolute;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: block;
+        }
+
+        #topUI {
+            border-radius: 0px 0px 10px 10px;
+            width: 1050px;
+            height: 30px;
+            margin-top: 0px;
+            margin-left: 100px;
+            z-index: 2;
+        }
+
+        #leftUI {
+            border-radius: 0px 10px 10px 0px;
+            width: 100px;
+            height: 400px;
+            margin-top: 100px;
+            margin-left: 0px;
+            z-index: 2;
+        }
+
+        #rightUI {
+            border-radius: 10px 0px 0px 10px;
+            width: 100px;
+            height: 400px;
+            margin-top: 100px;
+            right: 0px;
+            z-index: 2;
+        }
+
+        #bottomUI {
+            border-radius: 10px 10px 0px 0px;
+            width: 100%;
+            height: 50px;
+            bottom: 0px;
+            z-index: 2;
+        }
+
+        .metal {
+            border-radius: 5px;
+            padding: 5px;
+            background: url('menu.png') repeat-x #fff;
+            border: 1px solid #999;
+            border-bottom: 1px solid #666;
+            box-shadow: inset 0px 0px 5px #999;
+            box-shadow: 0px 2px 6px #777;
+            background-size: contain;
+        }
+
+        .shadow {
+            background: url('shadow.png') no-repeat;
+        }
+
+        .hui {
+            z-index: 3;
+            text-align: center;
+            height: 15px;
+            width: 82px;
+            margin-left: 4px;
+            margin-top: 4px;
+            font-size: small;
+        }
+
+        .huishadow {
+            z-index: 3;
+            background-size: 90px 7px;
+            width: 90px;
+            height: 7px;
+            margin-top: 0px;
+            margin-left: 4px;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <div id='map'></div>
+
+    <div class="blured" id="topUI">
+        <!-- список чтения, каталоги, маркеры -->
+
+
+    </div>
+    <div class="blured" id="leftUI">
+        <div class="metal hui">Просмотр</div>
+        <div class="shadow huishadow"></div>
+        <!-- поиск, быстрая навигация, фильтры, совпадения, документировать -->
+
+
+    </div>
+    <div class="blured" id="rightUI">
+        <div class="metal hui">Редактирование</div>
+        <div class="shadow huishadow"></div>
+        <!-- шаблоны, редактировать, добавить, администрирование -->
+
+
+    </div>
+    <div class="blured" id="bottomUI">
+        <!-- временная шкала -->
+
+
+    </div>
+
+    <script>var map = L.map('map').setView([51.505, -0.09], 13);
+        var token = '';
+
+        // https://api.mapbox.com/styles/v1/hort/ckswaqxyc036q17ntjhg3bewf/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaG9ydCIsImEiOiJja2xkanZ0dWswNWF0Mm5wcm5qYmx4ZXFmIn0.rUHYpYzjr15YWP0jh5SXKA
+        //https://api.mapbox.com/styles/v1/YOUR_USERNAME/YOUR_STYLE_ID/tiles/256/{z}/{x}/{y}?access_token=YOUR_ACCESS_TOKEN
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{username}/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            username: 'hort',
+            id: 'ckswaqxyc036q17ntjhg3bewf',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1IjoiaG9ydCIsImEiOiJja2xkanZ0dWswNWF0Mm5wcm5qYmx4ZXFmIn0.rUHYpYzjr15YWP0jh5SXKA'
+        }).addTo(map);</script>
+
+</body>
+</html>
